@@ -43,6 +43,7 @@ The class diagram in general is shown below.
 widget
 To ensure loose coupling we'll define an interface for the subject and one for the observer.
 
+```
 public interface ISubject {
 
     void addObserver(IObserver observer);
@@ -52,12 +53,13 @@ public interface ISubject {
     void notifyObservers();
 
 }
-
+```
+```
 public interface IObserver {
 
     void update( Object newState);
-
 }
+```
 The interfaces are almost self-explanatory. A concrete subject or publisher needs to implement ISubject and an observer
 needs to implement IObserver.
 
@@ -69,6 +71,7 @@ from the air traffic controller and unsubscribe when it lands.
 Publisher Code
 We create a control tower class which acts as a publisher for all aircraft.
 
+```
 public class ControlTower implements ISubject {
 
     // The ControlTower maintains a list of
@@ -112,10 +115,13 @@ public class ControlTower implements ISubject {
     }
 
 }
+```
+
 Observer Code
 The F-16 class would implement the IObservable as objects of the F-16 class would want updates from the ControlTower
 class.
 
+```
 public class F16 implements IObserver, IAircraft {
 
     ISubject observable;
@@ -144,6 +150,8 @@ public class F16 implements IObserver, IAircraft {
     }
 
 }
+```
+
 Push vs Pull
 Note how the F-16 class receives the new state as a type of class Object. We can pass in a more specific type if we
 agree on what information gets passed. The way the code is structured, it represents the Push Model where the subject is
